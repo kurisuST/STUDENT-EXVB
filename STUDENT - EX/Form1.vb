@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Globalization
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports OfficeOpenXml
 Imports Xceed.Words.NET
@@ -27,7 +28,7 @@ Public Class Form1
         txtBoxName.Clear()
         txtBoxLName.Clear()
         txtBoxMLName.Clear()
-        dtpBirthday.Text = "2000/01/01"
+        dtpBirthday.Text = "01/01/2000"
         txtBoxID.Clear()
         txtBoxCareer.Clear()
         txtBoxFGrade.Clear()
@@ -71,7 +72,7 @@ Public Class Form1
         Using sfd As New SaveFileDialog() With {.Filter = "WORD DOCUMENT|*.docx"}
             If sfd.ShowDialog() = DialogResult.OK Then
                 Try
-                    Using doc As Docx = DocX.Create(sfd.FileName)
+                    Using doc As DocX = DocX.Create(sfd.FileName)
                         For i As Integer = 0 To dgvData.Rows.Count - 1
                             For j As Integer = 0 To dgvData.Columns.Count - 1
                                 Dim k As Integer = 1
@@ -91,6 +92,7 @@ Public Class Form1
 
     Private Sub btnSetGrades_Click(sender As Object, e As EventArgs) Handles btnSetGrades.Click
         Dim frm As New Form2()
+        Form2.txtBoxFGrade = Me.txtBoxFGrade
         frm.Show()
     End Sub
 End Class

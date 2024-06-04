@@ -1,26 +1,12 @@
 ﻿Public Class Form2
-    Private txtBox As TextBox
-    Private Sub Form2(txtBox As TextBox)
-        Me.txtBox = txtBox
+    Public Property txtBoxFGrade As TextBox
+
+    Private Sub Form2()
         InitializeComponent()
-        AddHandler txtBoxPU1.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxPU2.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxPU3.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxPU4.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxMU1.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxMU2.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxMU3.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxMU4.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxPhU1.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxPhU2.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxPhU3.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxPhU4.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxSU1.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxSU2.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxSU3.KeyPress, AddressOf txtBox_KeyPress
-        AddHandler txtBoxSU4.KeyPress, AddressOf txtBox_KeyPress
     End Sub
-    Private Sub txtBox_KeyPress(sender As Object, e As KeyPressEventArgs)
+    Private Sub txtBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtBoxMU1.KeyPress, txtBoxMU2.KeyPress, txtBoxMU3.KeyPress, txtBoxMU4.KeyPress,
+        txtBoxPhU1.KeyPress, txtBoxPhU2.KeyPress, txtBoxPhU3.KeyPress, txtBoxPhU4.KeyPress, txtBoxPU1.KeyPress, txtBoxPU2.KeyPress, txtBoxPU3.KeyPress,
+        txtBoxPU4.KeyPress, txtBoxSU1.KeyPress, txtBoxSU2.KeyPress, txtBoxSU3.KeyPress, txtBoxSU4.KeyPress
         If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) Then
             e.Handled = True
         End If
@@ -29,13 +15,13 @@
         End If
         Dim currentText As String = CType(sender, TextBox).Text
         Dim newText As String = currentText.Insert(CType(sender, TextBox).SelectionStart, e.KeyChar.ToString())
-        Dim result As Integer
-        If Integer.TryParse(newText, result) Then
+        Dim result As Double
+        If Double.TryParse(newText, result) AndAlso result Then
             If result > 100 Then
                 e.Handled = True
             End If
         Else
-            e.Handled = True
+            e.Handled = False
         End If
     End Sub
 
@@ -64,7 +50,7 @@
             Dim spF As Double = GradeSetter.Average(sp1, sp2, sp3, sp4)
             Dim finalgrade As Double = GradeSetter.Average(spF, phsF, mthF, oopF)
 
-            GradeSetter.Sendtxtinfo(oopF, mthF, phsF, spF, txtBox)
+            GradeSetter.Sendtxtinfo(oopF, mthF, phsF, spF, txtBoxFGrade)
         Catch ex As Exception
             MessageBox.Show("Please insert all numbers.")
             Return

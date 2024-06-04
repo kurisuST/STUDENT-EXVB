@@ -156,6 +156,7 @@ Partial Class Form1
         dtpBirthday.Name = "dtpBirthday"
         dtpBirthday.Size = New Size(120, 23)
         dtpBirthday.TabIndex = 12
+        dtpBirthday.Value = New Date(2000, 1, 1, 0, 0, 0, 0)
         ' 
         ' Label7
         ' 
@@ -239,13 +240,13 @@ Partial Class Form1
         ' XSLXToolStripMenuItem
         ' 
         XSLXToolStripMenuItem.Name = "XSLXToolStripMenuItem"
-        XSLXToolStripMenuItem.Size = New Size(180, 22)
+        XSLXToolStripMenuItem.Size = New Size(106, 22)
         XSLXToolStripMenuItem.Text = "XSLX"
         ' 
         ' DOCXToolStripMenuItem
         ' 
         DOCXToolStripMenuItem.Name = "DOCXToolStripMenuItem"
-        DOCXToolStripMenuItem.Size = New Size(180, 22)
+        DOCXToolStripMenuItem.Size = New Size(106, 22)
         DOCXToolStripMenuItem.Text = "DOCX"
         ' 
         ' Form1

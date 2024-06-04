@@ -34,17 +34,17 @@ Public Class Person
             End Set
         End Property
 
-        Protected birthdayvalue As String
-        Public Property Birthday As DateTime?
-            Get
-                Return birthdayvalue
-            End Get
-            Set(value As DateTime?)
-                birthdayvalue = value
-            End Set
-        End Property
-
-        Public ReadOnly Property Age As Integer
+    Protected birthdayvalue As DateTime?
+    Public Property Birthday As DateTime?
+        Get
+            Return birthdayvalue
+        End Get
+        Set(value As DateTime?)
+            birthdayvalue = value
+        End Set
+    End Property
+    Public ReadOnly Property agevalue As Integer
+    Public ReadOnly Property Age As Integer
             Get
                 Dim day As Integer
                 Dim month As Integer
@@ -53,13 +53,13 @@ Public Class Person
                 month = (DateTime.Now.Month - Birthday.Value.Month)
                 day = (DateTime.Now.Day - Birthday.Value.Day)
 
-                If month >= 0 Then
-                    If day < 0 Then
-                        agevalue -= 1
-                    End If
+            If month = 0 Then
+                If day < 0 Then
+                    agevalue -= 1
                 End If
+            End If
 
-                If month < 0 Then
+            If month < 0 Then
                     agevalue -= 1
                 End If
 
